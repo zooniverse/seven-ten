@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160803195307) do
+ActiveRecord::Schema.define(version: 20160803215025) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,5 +35,15 @@ ActiveRecord::Schema.define(version: 20160803195307) do
     t.string "login", null: false
   end
 
+  create_table "variants", force: :cascade do |t|
+    t.string  "name",     null: false
+    t.string  "key",      null: false
+    t.json    "value",    null: false
+    t.integer "split_id", null: false
+    t.index ["key"], name: "index_variants_on_key", using: :btree
+    t.index ["split_id"], name: "index_variants_on_split_id", using: :btree
+  end
+
   add_foreign_key "splits", "projects"
+  add_foreign_key "variants", "splits", on_delete: :cascade
 end
