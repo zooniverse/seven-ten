@@ -1,0 +1,35 @@
+RSpec.describe SplitSerializer, type: :serializer do
+  let!(:split){ create :split }
+  let(:json) do
+    ActiveModelSerializers::SerializableResource.new(Split.all).as_json
+  end
+
+  describe '.filterable_attributes' do
+    subject{ SplitSerializer.filterable_attributes }
+    it{ is_expected.to match_array [:project_id, :state] }
+  end
+
+  describe '.sortable_attributes' do
+    subject{ SplitSerializer.sortable_attributes }
+    it{ is_expected.to be_empty }
+  end
+
+  describe '.default_sort' do
+    subject{ SplitSerializer.default_sort }
+    it{ is_expected.to be_empty }
+  end
+
+  describe '#attributes' do
+    subject{ json.dig :data, 0, :attributes }
+    its([:name]){ is_expected.to eql split.name }
+    its([:state]){ is_expected.to eql split.state }
+    its([:project_id]){ is_expected.to eql split.project_id }
+    its([:ends_at]){ is_expected.to eql split.ends_at }
+  end
+
+  describe '#links' do
+    subject{ json.dig :data, 0, :links }
+    its([:self]){ is_expected.to eql "/splits/#{ split.id }" }
+    its([:variants]){ is_expected.to eql "/variants?filter%5Bsplit_id%5D=#{ split.id }" }
+  end
+end
