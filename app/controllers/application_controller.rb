@@ -1,4 +1,6 @@
 class ApplicationController < ActionController::Base
+  include Paginatable
+
   attr_reader :current_user
   before_action :set_format, :set_user
 

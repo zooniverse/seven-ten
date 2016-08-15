@@ -1,5 +1,6 @@
 RSpec.describe ApplicationController, type: :controller do
   it_behaves_like 'a controller authenticating', :root
+  it_behaves_like 'a controller paginating'
 
   describe '#root' do
     subject{ response }
