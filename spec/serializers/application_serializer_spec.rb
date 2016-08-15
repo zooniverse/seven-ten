@@ -26,7 +26,7 @@ RSpec.describe ApplicationSerializer, type: :serializer do
 
   describe '.sortable_attributes' do
     subject{ serializer.sortable_attributes }
-    it{ is_expected.to match_array [:attr1, :attr2] }
+    it{ is_expected.to match_array [:id, :attr1, :attr2] }
   end
 
   describe '.default_sort' do

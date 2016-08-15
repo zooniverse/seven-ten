@@ -11,7 +11,7 @@ RSpec.describe ProjectSerializer, type: :serializer do
 
   describe '.sortable_attributes' do
     subject{ ProjectSerializer.sortable_attributes }
-    it{ is_expected.to be_empty }
+    it{ is_expected.to match_array [:id] }
   end
 
   describe '.default_sort' do

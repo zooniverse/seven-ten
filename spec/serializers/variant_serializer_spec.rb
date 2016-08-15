@@ -11,7 +11,7 @@ RSpec.describe VariantSerializer, type: :serializer do
 
   describe '.sortable_attributes' do
     subject{ VariantSerializer.sortable_attributes }
-    it{ is_expected.to be_empty }
+    it{ is_expected.to match_array [:id] }
   end
 
   describe '.default_sort' do

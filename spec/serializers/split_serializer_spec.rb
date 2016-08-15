@@ -11,7 +11,7 @@ RSpec.describe SplitSerializer, type: :serializer do
 
   describe '.sortable_attributes' do
     subject{ SplitSerializer.sortable_attributes }
-    it{ is_expected.to be_empty }
+    it{ is_expected.to match_array [:id] }
   end
 
   describe '.default_sort' do

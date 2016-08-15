@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   include Paginatable
+  include Sortable
 
   class << self
     attr_accessor :resource, :serializer_class
@@ -18,7 +19,7 @@ class ApplicationController < ActionController::Base
   end
 
   def serializer_class
-    self.class.serializer
+    self.class.serializer_class
   end
 
   def resource_ids

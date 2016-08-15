@@ -25,7 +25,7 @@ class ApplicationSerializer < ActiveModel::Serializer
 
   def self.inherited(klass)
     klass.filterable_attributes = filterable_attributes&.dup || []
-    klass.sortable_attributes = sortable_attributes&.dup || []
+    klass.sortable_attributes = sortable_attributes&.dup || [:id]
     klass.default_sort = default_sort&.dup || :id
     super
   end
