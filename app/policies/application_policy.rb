@@ -28,6 +28,14 @@ class ApplicationPolicy
     false
   end
 
+  def admin?
+    logged_in? && user.admin
+  end
+
+  def logged_in?
+    !!user
+  end
+
   def scope
     Pundit.policy_scope!(user, records.first.class)
   end
