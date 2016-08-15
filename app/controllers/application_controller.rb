@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  include Pundit
   include Filterable
   include Paginatable
   include Sortable
@@ -14,6 +15,17 @@ class ApplicationController < ActionController::Base
     render json: { }
   end
 
+  def index
+    authorize resource
+    scoped = sort filter policy_scope resource
+    render json: paginate(scoped)
+  end
+
+  def show
+    scoped = resource.where(id: resource_ids)
+    authorize scoped
+    render json: scoped
+  end
 
   def resource
     self.class.resource
