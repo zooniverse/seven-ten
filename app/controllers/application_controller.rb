@@ -30,6 +30,11 @@ class ApplicationController < ActionController::Base
     render json: scoped
   end
 
+  def create
+    service.create!
+    render json: service.instance
+  end
+
 
   def service
     @service ||= service_class.new(self)
