@@ -27,4 +27,20 @@ RSpec.describe SplitsController, type: :controller do
       }
     end
   end
+
+  it_behaves_like 'a controller updating' do
+    let(:authorized_user){ create :user, admin: true }
+    let(:split){ create :split }
+    let(:valid_params) do
+      {
+        id: split.id.to_s,
+        data: {
+          id: split.id.to_s,
+          attributes: {
+            name: 'changed'
+          }
+        }
+      }
+    end
+  end
 end

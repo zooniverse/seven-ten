@@ -35,6 +35,10 @@ class ApplicationController < ActionController::Base
     render json: service.instance
   end
 
+  def update
+    service.update!
+    render json: service.instance
+  end
 
   def service
     @service ||= service_class.new(self)

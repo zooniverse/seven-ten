@@ -30,4 +30,20 @@ RSpec.describe VariantsController, type: :controller do
       }
     end
   end
+
+  it_behaves_like 'a controller updating' do
+    let(:authorized_user){ create :user, admin: true }
+    let(:variant){ create :variant }
+    let(:valid_params) do
+      {
+        id: variant.id.to_s,
+        data: {
+          id: variant.id.to_s,
+          attributes: {
+            name: 'changed'
+          }
+        }
+      }
+    end
+  end
 end
