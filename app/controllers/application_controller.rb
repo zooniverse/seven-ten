@@ -5,8 +5,10 @@ class ApplicationController < ActionController::Base
   include Sortable
 
   class << self
-    attr_accessor :resource, :serializer_class
+    attr_accessor :resource, :serializer_class, :service_class, :schema_class
   end
+
+  delegate :resource, :serializer_class, :schema_class, to: :'self.class'
 
   attr_reader :current_user
   before_action :set_format, :set_user
@@ -27,12 +29,13 @@ class ApplicationController < ActionController::Base
     render json: scoped
   end
 
-  def resource
-    self.class.resource
+
+  def service
+    @service ||= service_class.new(self)
   end
 
-  def serializer_class
-    self.class.serializer_class
+  def service_class
+    self.class.service_class || ApplicationService
   end
 
   def resource_ids
