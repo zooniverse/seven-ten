@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   include Pundit
+  include Rescuable
   include Filterable
   include Paginatable
   include Sortable
