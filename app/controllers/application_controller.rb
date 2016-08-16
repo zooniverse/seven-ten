@@ -40,6 +40,11 @@ class ApplicationController < ActionController::Base
     render json: service.instance
   end
 
+  def destroy
+    service.destroy!
+    render json: { }, status: :no_content
+  end
+
   def service
     @service ||= service_class.new(self)
   end

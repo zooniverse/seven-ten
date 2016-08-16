@@ -62,8 +62,8 @@ RSpec.describe ApplicationService, type: :service do
     let(:params) do
       {
         action: :update,
+        id: split.id.to_s,
         data: {
-          id: split.id.to_s,
           attributes: {
             name: 'changed'
           }
@@ -71,9 +71,9 @@ RSpec.describe ApplicationService, type: :service do
       }
     end
 
-    it 'should initialize the instance' do
+    it 'should find the instance' do
       subject.update!
-      expect(subject.instance).to be_a Split
+      expect(subject.instance.id).to eql split.id
     end
 
     it 'should authorize' do
@@ -89,6 +89,31 @@ RSpec.describe ApplicationService, type: :service do
     it 'should save the instance' do
       subject.update!
       expect(split.reload.name).to eql 'changed'
+    end
+  end
+
+  describe '#destroy!' do
+    let(:split){ create :split }
+    let(:params) do
+      {
+        action: :destroy,
+        id: split.id.to_s
+      }
+    end
+
+    it 'should find the instance' do
+      subject.destroy!
+      expect(subject.instance).to be_a Split
+    end
+
+    it 'should authorize' do
+      expect(subject).to receive :authorize!
+      subject.destroy!
+    end
+
+    it 'should destroy the instance' do
+      subject.destroy!
+      expect{ split.reload }.to raise_error ActiveRecord::RecordNotFound
     end
   end
 

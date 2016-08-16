@@ -4,7 +4,7 @@ RSpec.shared_examples_for 'a controller updating' do
   let(:current_user){ nil }
 
   let(:valid_params){ { } }
-  let(:invalid_params){ { id: instance.id, data: { id: instance.id } } }
+  let(:invalid_params){ { id: instance.id } }
   let(:current_params){ invalid_params }
 
   let(:instance){ create controller.resource.model_name.singular }

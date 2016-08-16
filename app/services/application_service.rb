@@ -15,11 +15,17 @@ class ApplicationService
   end
 
   def update!
-    @instance = resource.find params.dig(:data, :id)
+    @instance = resource.find params[:id]
     authorize!
     validate!
     instance.assign_attributes attributes
     instance.save!
+  end
+
+  def destroy!
+    @instance = resource.find params[:id]
+    authorize!
+    instance.destroy!
   end
 
   def authorize!
