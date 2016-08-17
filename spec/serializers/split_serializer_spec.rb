@@ -24,7 +24,7 @@ RSpec.describe SplitSerializer, type: :serializer do
     its([:name]){ is_expected.to eql split.name }
     its([:state]){ is_expected.to eql split.state }
     its([:project_id]){ is_expected.to eql split.project_id }
-    its([:ends_at]){ is_expected.to eql split.ends_at }
+    its([:ends_at]){ is_expected.to be_within(1.minute).of split.ends_at }
   end
 
   describe '#links' do
