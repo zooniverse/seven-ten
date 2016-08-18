@@ -11,10 +11,22 @@ class Split < ApplicationRecord
     message: 'is not a valid state'
   }
 
+  validates :key, presence: true
+
+  validates :key, uniqueness: {
+    scope: :project_id,
+    if: :active?,
+    message: "Only one split can be active on '%{value}' at a time"
+  }
+
   before_create :set_ends_at
 
   scope :active, ->{ where state: 'active' }
   scope :expired, ->{ active.where 'ends_at < ?', Time.now.utc }
+
+  def active?
+    state == 'active'
+  end
 
   def set_ends_at
     self.ends_at ||= 2.weeks.from_now.utc

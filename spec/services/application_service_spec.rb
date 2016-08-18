@@ -30,6 +30,7 @@ RSpec.describe ApplicationService, type: :service do
           attributes: {
             project_id: project.id.to_s,
             name: 'works',
+            key: 'test',
             state: 'inactive'
           }
         }

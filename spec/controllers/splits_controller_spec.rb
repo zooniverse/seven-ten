@@ -14,6 +14,7 @@ RSpec.describe SplitsController, type: :controller do
         data: {
           attributes: {
             name: 'works',
+            key: 'something',
             state: 'inactive',
           }, relationships: {
             project: {

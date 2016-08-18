@@ -6,7 +6,7 @@ RSpec.describe SplitSerializer, type: :serializer do
 
   describe '.filterable_attributes' do
     subject{ SplitSerializer.filterable_attributes }
-    it{ is_expected.to match_array [:project_id, :state] }
+    it{ is_expected.to match_array [:project_id, :key, :state] }
   end
 
   describe '.sortable_attributes' do
@@ -22,6 +22,7 @@ RSpec.describe SplitSerializer, type: :serializer do
   describe '#attributes' do
     subject{ json.dig :data, 0, :attributes }
     its([:name]){ is_expected.to eql split.name }
+    its([:key]){ is_expected.to eql split.key }
     its([:state]){ is_expected.to eql split.state }
     its([:project_id]){ is_expected.to eql split.project_id }
     its([:ends_at]){ is_expected.to be_within(1.minute).of split.ends_at }

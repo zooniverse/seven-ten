@@ -5,6 +5,31 @@ RSpec.describe Split, type: :model do
       expect(without_name).to fail_validation name: "can't be blank"
     end
 
+    it 'should require a key' do
+      without_key = build :split, key: nil
+      expect(without_key).to fail_validation key: "can't be blank"
+    end
+
+    context 'when limiting active keys' do
+      let(:project){ create :project }
+      let!(:split){ create :split, project: project, key: 'test', state: 'active' }
+
+      it 'should prevent duplicates' do
+        duplicate = build :split, project: project, key: 'test', state: 'active'
+        expect(duplicate).to fail_validation key: "Only one split can be active on 'test' at a time"
+      end
+
+      it 'should allow inactive duplicates' do
+        inactive = build :split, project: project, key: 'test', state: 'inactive'
+        expect(inactive).to_not fail_validation
+      end
+
+      it 'should scope to the project' do
+        different = build :split, key: 'test', state: 'active'
+        expect(different).to_not fail_validation
+      end
+    end
+
     it 'should require a project' do
       without_project = build :split, project: nil, name: 'split'
       expect(without_project).to fail_validation project: 'must exist'
@@ -22,6 +47,18 @@ RSpec.describe Split, type: :model do
     let!(:expired){ create :split, state: 'active', ends_at: 1.day.ago }
     subject{ Split.expired }
     it{ is_expected.to match_array [expired] }
+  end
+
+  describe '#active?' do
+    context 'when active' do
+      subject{ create(:split, state: 'active').active? }
+      it{ is_expected.to be true }
+    end
+
+    context 'when inactive' do
+      subject{ create(:split, state: 'inactive').active? }
+      it{ is_expected.to be false }
+    end
   end
 
   describe '#set_ends_at' do

@@ -3,7 +3,7 @@ RSpec.describe VariantsController, type: :controller do
   it_behaves_like 'a controller authorizing'
   it_behaves_like 'a controller paginating'
   it_behaves_like 'a controller sorting', attributes: [], default: :id
-  it_behaves_like 'a controller filtering', attributes: [:key, :split_id]
+  it_behaves_like 'a controller filtering', attributes: [:split_id]
   it_behaves_like 'a controller rendering'
 
   it_behaves_like 'a controller creating' do
@@ -14,7 +14,6 @@ RSpec.describe VariantsController, type: :controller do
         data: {
           attributes: {
             name: 'works',
-            key: 'test',
             value: {
               text: 'also works'
             }

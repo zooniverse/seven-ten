@@ -10,11 +10,6 @@ RSpec.describe Variant, type: :model do
       expect(without_name).to fail_validation name: "can't be blank"
     end
 
-    it 'should require a key' do
-      without_key = build :variant, key: nil
-      expect(without_key).to fail_validation key: "can't be blank"
-    end
-
     it 'should require a value' do
       without_value = build :variant, value: nil
       expect(without_value).to fail_validation value: "can't be blank"

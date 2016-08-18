@@ -10,7 +10,6 @@ RSpec.describe VariantSchema, type: :schema do
       with :properties do
         its(:split_id){ is_expected.to eql id_schema }
         its(:name){ is_expected.to eql type: 'string' }
-        its(:key){ is_expected.to eql type: 'string' }
 
         with :value do
           its(:type){ is_expected.to eql 'object' }
@@ -26,7 +25,7 @@ RSpec.describe VariantSchema, type: :schema do
     it_behaves_like 'a variant schema'
 
     with 'properties .data' do
-      its(:required){ is_expected.to eql %w(split_id name key value) }
+      its(:required){ is_expected.to eql %w(split_id name value) }
     end
   end
 

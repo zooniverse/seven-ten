@@ -21,9 +21,12 @@ ActiveRecord::Schema.define(version: 20160803215840) do
   end
 
   create_table "split_user_variants", force: :cascade do |t|
-    t.integer "split_id",   null: false
-    t.integer "user_id",    null: false
-    t.integer "variant_id", null: false
+    t.integer  "split_id",   null: false
+    t.integer  "user_id",    null: false
+    t.integer  "variant_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["split_id", "user_id"], name: "index_split_user_variants_on_split_id_and_user_id", unique: true, using: :btree
     t.index ["split_id"], name: "index_split_user_variants_on_split_id", using: :btree
     t.index ["user_id"], name: "index_split_user_variants_on_user_id", using: :btree
     t.index ["variant_id"], name: "index_split_user_variants_on_variant_id", using: :btree
@@ -31,25 +34,28 @@ ActiveRecord::Schema.define(version: 20160803215840) do
 
   create_table "splits", force: :cascade do |t|
     t.string   "name",                            null: false
+    t.string   "key",                             null: false
     t.string   "state",      default: "inactive", null: false
     t.integer  "project_id",                      null: false
     t.datetime "ends_at",                         null: false
     t.datetime "created_at",                      null: false
     t.datetime "updated_at",                      null: false
+    t.index ["key", "state", "project_id"], name: "index_splits_on_key_and_state_and_project_id", unique: true, where: "((state)::text = 'active'::text)", using: :btree
     t.index ["project_id"], name: "index_splits_on_project_id", using: :btree
     t.index ["state"], name: "index_splits_on_state", using: :btree
   end
 
   create_table "users", force: :cascade do |t|
     t.string "login", null: false
+    t.index ["login"], name: "index_users_on_login", using: :btree
   end
 
   create_table "variants", force: :cascade do |t|
-    t.string  "name",     null: false
-    t.string  "key",      null: false
-    t.json    "value",    null: false
-    t.integer "split_id", null: false
-    t.index ["key"], name: "index_variants_on_key", using: :btree
+    t.string   "name",       null: false
+    t.json     "value",      null: false
+    t.integer  "split_id",   null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["split_id"], name: "index_variants_on_split_id", using: :btree
   end
 

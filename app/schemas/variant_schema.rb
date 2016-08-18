@@ -11,7 +11,6 @@ class VariantSchema < ApplicationSchema
     root do |root_object|
       id :split_id, **required
       string :name, **required
-      string :key, **required
 
       object :value, **required do |value|
         value.additional_properties true
