@@ -28,6 +28,7 @@ RSpec.configure do |config|
     mocks.verify_partial_doubles = true
   end
 
+  config.alias_it_should_behave_like_to :it_has_behavior_of, 'has behavior:'
   config.use_transactional_fixtures = true
   config.infer_spec_type_from_file_location!
   config.filter_run :focus
