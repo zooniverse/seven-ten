@@ -10,10 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160803215840) do
+ActiveRecord::Schema.define(version: 20160818142444) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "metrics", force: :cascade do |t|
+    t.integer  "split_user_variant_id",              null: false
+    t.string   "key",                                null: false
+    t.json     "value",                 default: {}
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
+    t.index ["key"], name: "index_metrics_on_key", using: :btree
+    t.index ["split_user_variant_id"], name: "index_metrics_on_split_user_variant_id", using: :btree
+  end
 
   create_table "projects", force: :cascade do |t|
     t.string "slug"
@@ -59,6 +69,7 @@ ActiveRecord::Schema.define(version: 20160803215840) do
     t.index ["split_id"], name: "index_variants_on_split_id", using: :btree
   end
 
+  add_foreign_key "metrics", "split_user_variants", on_delete: :cascade
   add_foreign_key "split_user_variants", "splits", on_delete: :cascade
   add_foreign_key "split_user_variants", "users"
   add_foreign_key "split_user_variants", "variants", on_delete: :cascade

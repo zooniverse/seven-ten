@@ -3,6 +3,7 @@ class Split < ApplicationRecord
   has_many :variants
   has_many :split_user_variants
   has_many :users, through: :split_user_variants
+  has_many :metrics, through: :split_user_variants
   belongs_to :project, required: true
 
   validates :name, presence: true
