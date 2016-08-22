@@ -1,16 +1,16 @@
 class VariantPolicy < ApplicationPolicy
-  delegate :writable?, to: :split_policy
+  delegate :admin_or_project_owner?, to: :split_policy
 
   def create?
-    writable?
+    admin_or_project_owner?
   end
 
   def update?
-    writable?
+    admin_or_project_owner?
   end
 
   def destroy?
-    writable?
+    admin_or_project_owner?
   end
 
   def split_policy

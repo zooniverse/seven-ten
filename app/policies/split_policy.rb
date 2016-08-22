@@ -1,16 +1,16 @@
 class SplitPolicy < ApplicationPolicy
-  delegate :writable?, to: :project_policy
+  delegate :admin_or_project_owner?, to: :project_policy
 
   def create?
-    writable?
+    admin_or_project_owner?
   end
 
   def update?
-    writable?
+    admin_or_project_owner?
   end
 
   def destroy?
-    writable?
+    admin_or_project_owner?
   end
 
   def project_policy
