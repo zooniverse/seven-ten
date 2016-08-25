@@ -1,6 +1,6 @@
 class ApplicationSerializer < ActiveModel::Serializer
   class << self
-    attr_accessor :filterable_attributes, :sortable_attributes, :default_sort
+    attr_accessor :filterable_attributes, :sortable_attributes, :default_sort, :default_includes
   end
 
   attribute :id
@@ -21,6 +21,10 @@ class ApplicationSerializer < ActiveModel::Serializer
 
   def self.default_sort_by(attr)
     self.default_sort = attr.to_sym
+  end
+
+  def self.include_by_default(*attrs)
+    self.default_includes = attrs.join ','
   end
 
   def self.inherited(klass)

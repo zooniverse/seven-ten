@@ -8,9 +8,13 @@ RSpec.describe ApplicationSerializer, type: :serializer do
   let(:serializer) do
     Class.new(ApplicationSerializer) do
       attributes :id, :attr1, :attr2
+      belongs_to :something
+      belongs_to :something_else
+
       filterable_by :id, :attr1
       sortable_by :attr1, :attr2
       default_sort_by :id
+      include_by_default :something, :something_else
     end
   end
 
@@ -32,5 +36,10 @@ RSpec.describe ApplicationSerializer, type: :serializer do
   describe '.default_sort' do
     subject{ serializer.default_sort }
     it{ is_expected.to eql :id }
+  end
+
+  describe '.default_includes' do
+    subject{ serializer.default_includes }
+    it{ is_expected.to eql 'something,something_else' }
   end
 end

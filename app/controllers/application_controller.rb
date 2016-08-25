@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   include Filterable
   include Paginatable
   include Sortable
+  include Includable
 
   class << self
     attr_accessor :resource, :serializer_class, :service_class, :schema_class
@@ -20,14 +21,14 @@ class ApplicationController < ActionController::Base
 
   def index
     authorize resource
-    scoped = sort filter policy_scope resource
-    render json: paginate(scoped)
+    scoped = sort filter policy_scope resource_scope
+    render json: paginate(scoped), include: includes
   end
 
   def show
     scoped = resource.where(id: resource_ids)
     authorize scoped
-    render json: scoped
+    render json: scoped, include: includes
   end
 
   def create
@@ -51,6 +52,10 @@ class ApplicationController < ActionController::Base
 
   def service_class
     self.class.service_class || ApplicationService
+  end
+
+  def resource_scope
+    resource
   end
 
   def resource_ids
