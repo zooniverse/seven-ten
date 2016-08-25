@@ -24,6 +24,7 @@ class Split < ApplicationRecord
 
   scope :active, ->{ where state: 'active' }
   scope :expired, ->{ active.where 'ends_at < ?', Time.now.utc }
+  scope :for_project, ->(project){ joins(:project).where 'projects.slug' => project.slug }
 
   def active?
     state == 'active'
