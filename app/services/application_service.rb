@@ -65,6 +65,6 @@ class ApplicationService
   end
 
   def unauthorized!
-    raise Pundit::NotAuthorizedError.new "not allowed to #{ action } this #{ resource }"
+    raise Pundit::NotAuthorizedError.new "not allowed to #{ action } this #{ resource.name }"
   end
 end
