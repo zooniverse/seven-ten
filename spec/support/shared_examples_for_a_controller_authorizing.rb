@@ -1,6 +1,7 @@
 RSpec.shared_examples_for 'a controller authorizing' do |methods: [:show, :index]|
   let(:resource){ controller.resource }
-  let(:resource_instance){ create resource.model_name.singular }
+  let(:resource_scope){ controller.resource_scope }
+  let(:resource_instance){ create controller.resource.model_name.singular }
 
   if methods.include?(:show)
     describe '#show' do
@@ -19,7 +20,7 @@ RSpec.shared_examples_for 'a controller authorizing' do |methods: [:show, :index
       end
 
       it 'should use the policy scope' do
-        expect(controller).to receive(:policy_scope).with(resource).and_return resource
+        expect(controller).to receive(:policy_scope).with(resource_scope).and_return resource_scope
         get :index
       end
     end
