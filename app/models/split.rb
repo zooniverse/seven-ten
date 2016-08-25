@@ -15,7 +15,7 @@ class Split < ApplicationRecord
   validates :key, presence: true
 
   validates :key, uniqueness: {
-    scope: :project_id,
+    scope: [:project_id, :state],
     if: :active?,
     message: "Only one split can be active on '%{value}' at a time"
   }
