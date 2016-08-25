@@ -26,6 +26,15 @@ class Split < ApplicationRecord
   scope :expired, ->{ active.where 'ends_at < ?', Time.now.utc }
   scope :for_project, ->(project){ joins(:project).where 'projects.slug' => project.slug }
 
+  def assign_user(user)
+    with_retry(attempts: 5, error: ActiveRecord::RecordNotUnique) do
+      split_user_variants.first_or_create(user: user) do |suv|
+        suv.variant = variants.sample # or implement a weighted sampling
+        suv.save!
+      end
+    end
+  end
+
   def active?
     state == 'active'
   end

@@ -58,6 +58,42 @@ RSpec.describe Split, type: :model do
     it{ is_expected.to match_array [split1] }
   end
 
+  describe '#assign_user' do
+    let(:split){ create :split, state: 'active' }
+    let(:user){ create :user }
+    subject{ split.assign_user user }
+
+    context 'when the user is already assigned' do
+      let!(:assigned){ create :split_user_variant, user: user, split: split }
+      it{ is_expected.to eql assigned }
+    end
+
+    context 'when the user is not assigned' do
+      let!(:variant){ create :variant, split: split }
+      its(:variant){ is_expected.to eql variant }
+    end
+
+    context 'when the assignment is contentious' do
+      let(:model_double){ double first_or_create: nil }
+      let!(:variants){ create_list :variant, 2, split: split }
+      let!(:assigned){ create :split_user_variant, user: user, split: split }
+      let(:duplicate){ build :split_user_variant, user: user, split: split }
+
+      def expect_assignment(suv)
+        expect(model_double).to receive(:first_or_create).once.ordered
+          .and_return(suv).and_yield suv
+      end
+
+      before(:each) do
+        expect(split).to receive(:split_user_variants).twice.and_return model_double
+        expect_assignment duplicate
+        expect_assignment assigned
+      end
+
+      it{ is_expected.to eql assigned }
+    end
+  end
+
   describe '#active?' do
     context 'when active' do
       subject{ create(:split, state: 'active').active? }
