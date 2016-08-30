@@ -28,7 +28,7 @@ class Split < ApplicationRecord
 
   def assign_user(user)
     with_retry(attempts: 5, error: ActiveRecord::RecordNotUnique) do
-      split_user_variants.first_or_create(user: user) do |suv|
+      split_user_variants.where(user: user).first_or_create do |suv|
         suv.variant = variants.sample # or implement a weighted sampling
         suv.save!
       end

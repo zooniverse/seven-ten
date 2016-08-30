@@ -6,7 +6,7 @@ class User < ApplicationRecord
     id, login = data&.values_at 'id', 'login'
     return unless id && login
 
-    User.first_or_create(id: id, login: login).tap do |user|
+    User.where(id: id, login: login).first_or_create do |user|
       user.display_name = data['dname']
       user.admin = data['admin'] == true # explicit
     end

@@ -75,12 +75,15 @@ RSpec.describe Split, type: :model do
 
     context 'when the assignment is contentious' do
       let(:model_double){ double first_or_create: nil }
+      let(:query_double){ double where: nil }
       let!(:variants){ create_list :variant, 2, split: split }
       let!(:assigned){ create :split_user_variant, user: user, split: split }
       let(:duplicate){ build :split_user_variant, user: user, split: split }
 
       def expect_assignment(suv)
-        expect(model_double).to receive(:first_or_create).once.ordered
+        expect(model_double).to receive(:where).once.ordered
+          .and_return query_double
+        expect(query_double).to receive(:first_or_create).once.ordered
           .and_return(suv).and_yield suv
       end
 
