@@ -119,5 +119,29 @@ RSpec.describe Split, type: :model do
     end
   end
 
+  describe '#set_metric_types' do
+    include_context 'a split with metric types' do
+      context 'for an unknown key' do
+        subject{ unknown_key.metric_types }
+        it{ is_expected.to match_array default_metrics }
+      end
+
+      context 'for landing text' do
+        subject{ landing_text.metric_types }
+        it{ is_expected.to match_array landing_text_metrics }
+      end
+
+      context 'for workflow advance message' do
+        subject{ workflow_advance.metric_types }
+        it{ is_expected.to match_array workflow_advance_metrics }
+      end
+
+      context 'for landing text' do
+        subject{ mini_course_visible.metric_types }
+        it{ is_expected.to match_array mini_course_visible_metrics }
+      end
+    end
+  end
+
   pending 'transitioning state'
 end

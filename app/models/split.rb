@@ -1,5 +1,7 @@
 # TO-DO: add sidekiq worker to expire/transition state
 class Split < ApplicationRecord
+  include MetricTypes
+
   has_many :variants
   has_many :split_user_variants
   has_many :users, through: :split_user_variants

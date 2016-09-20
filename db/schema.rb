@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160818142444) do
+ActiveRecord::Schema.define(version: 20160902164725) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,13 +43,14 @@ ActiveRecord::Schema.define(version: 20160818142444) do
   end
 
   create_table "splits", force: :cascade do |t|
-    t.string   "name",                            null: false
-    t.string   "key",                             null: false
-    t.string   "state",      default: "inactive", null: false
-    t.integer  "project_id",                      null: false
-    t.datetime "ends_at",                         null: false
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
+    t.string   "name",                              null: false
+    t.string   "key",                               null: false
+    t.string   "state",        default: "inactive", null: false
+    t.integer  "project_id",                        null: false
+    t.datetime "ends_at",                           null: false
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
+    t.string   "metric_types", default: [],                      array: true
     t.index ["key", "state", "project_id"], name: "index_splits_on_key_and_state_and_project_id", unique: true, where: "((state)::text = 'active'::text)", using: :btree
     t.index ["project_id"], name: "index_splits_on_project_id", using: :btree
     t.index ["state"], name: "index_splits_on_state", using: :btree

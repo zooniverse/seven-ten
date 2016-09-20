@@ -1,5 +1,5 @@
 class SplitSerializer < ApplicationSerializer
-  attributes :name, :key, :state, :project_id, :ends_at, :created_at, :updated_at
+  attributes :name, :key, :state, :project_id, :metric_types, :ends_at, :created_at, :updated_at
   filterable_by :project_id, :key, :state
 
   link(:self){ split_path object }

@@ -1,5 +1,5 @@
 RSpec.describe SplitSerializer, type: :serializer do
-  let!(:split){ create :split }
+  let!(:split){ create :split, key: 'landing.text' }
   let(:json) do
     ActiveModelSerializers::SerializableResource.new(Split.all).as_json
   end
@@ -25,6 +25,7 @@ RSpec.describe SplitSerializer, type: :serializer do
     its([:key]){ is_expected.to eql split.key }
     its([:state]){ is_expected.to eql split.state }
     its([:project_id]){ is_expected.to eql split.project_id }
+    its([:metric_types]){ is_expected.to match_array %w(classifier_visited classification_created) }
     its([:ends_at]){ is_expected.to be_within(1.minute).of split.ends_at }
   end
 
