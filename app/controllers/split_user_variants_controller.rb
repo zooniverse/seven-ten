@@ -4,7 +4,7 @@ class SplitUserVariantsController < ApplicationController
   before_action :ensure_assigned, if: :assignable?
 
   def resource_scope
-    SplitUserVariant.joins :project
+    SplitUserVariant.joins(:split, :project).where splits: { state: 'active' }
   end
 
   def ensure_assigned

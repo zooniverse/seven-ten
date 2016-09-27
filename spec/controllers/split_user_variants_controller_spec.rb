@@ -7,8 +7,12 @@ RSpec.describe SplitUserVariantsController, type: :controller do
   it_behaves_like 'a controller sorting', attributes: [], default: :id
   it_behaves_like 'a controller filtering', attributes: [:split_id, :'projects.slug']
   it_has_behavior_of 'an authenticated user' do
+    let(:split){ create :split, state: 'active' }
     let(:current_user){ resource_instance.user }
-    it_behaves_like 'a controller rendering'
+
+    it_behaves_like 'a controller rendering' do
+      let!(:resource_instance){ create :split_user_variant, split: split }
+    end
   end
 
   describe '#index' do
