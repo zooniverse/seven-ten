@@ -4,7 +4,7 @@ Rails.application.configure do
 
   config.consider_all_requests_local = false
   config.action_controller.perform_caching = true
-  config.force_ssl = true
+  config.force_ssl = false
   config.log_level = :info
   config.log_tags = [ :request_id ]
   config.active_support.deprecation = :notify

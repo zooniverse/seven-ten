@@ -1,15 +1,16 @@
 #!/usr/bin/env puma
 
-if ENV['RAILS_ENV'] !~ /development|test/
+env = ENV['RAILS_ENV']
+
+if env != 'development' && env != 'test'
   directory '/rails_app'
 end
 
-if ENV['RAILS_ENV'] == 'staging'
+if env == 'staging'
   threads 2, 5
 else
-  threads 2, 16
+  threads 2, 8
 end
 
 worker_timeout 10
-
 bind 'tcp://0.0.0.0:81'

@@ -1,3 +1,5 @@
+require 'authenticator'
+
 class ApplicationController < ActionController::Base
   include Pundit
   include Rescuable
