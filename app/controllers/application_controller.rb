@@ -18,7 +18,9 @@ class ApplicationController < ActionController::Base
   before_action :set_format, :set_user
 
   def root
-    render json: { }
+    render json: {
+      revision: Rails.application.revision
+    }
   end
 
   def index
