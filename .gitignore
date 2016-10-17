@@ -8,3 +8,4 @@
 **.orig
 .DS_Store
 /config/*.yml
+/config/revision.txt

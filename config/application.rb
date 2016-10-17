@@ -7,6 +7,8 @@ Bundler.require(*Rails.groups)
 
 module SevenTen
   class Application < Rails::Application
+    attr_accessor :revision
+
     config.api_only = true
 
     config.autoload_paths += [
