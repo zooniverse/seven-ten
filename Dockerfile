@@ -31,6 +31,6 @@ COPY docker/supervisor.conf /etc/supervisor/conf.d/seven_ten.conf
 ENV RAILS_ENV $RAILS_ENV
 ENV RACK_ENV $RAILS_ENV
 
-EXPOSE 81
+EXPOSE 443
 
 ENTRYPOINT /usr/bin/supervisord

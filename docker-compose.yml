@@ -14,11 +14,5 @@ seven_ten:
     - "RACK_ENV=docker_development"
   links:
     - postgres:pg
-
-nginx:
-  dockerfile: Dockerfile.nginx
-  build: ./
   ports:
-    - "3000:80"
-  links:
-    - seven_ten:seven_ten
+    - "443:443"
