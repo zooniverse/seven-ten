@@ -5,6 +5,8 @@ gem 'puma', '~> 3.0'
 
 gem 'rack-cors', '~> 0.4.0'
 gem 'pg', '~> 0.18.4'
+gem 'redis', '~> 3.3.1'
+gem 'sidekiq', '~> 4.2.2'
 gem 'active_model_serializers', '~> 0.10.2'
 gem 'jwt', '1.5.4'
 gem 'faraday', '~> 0.9.2'

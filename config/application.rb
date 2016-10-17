@@ -20,7 +20,9 @@ module SevenTen
       'app/serializers/concerns',
       'app/serializers',
       'app/services/concerns',
-      'app/services'
+      'app/services',
+      'app/workers',
+      'app/workers/concerns'
     ].collect{ |path| Rails.root.join path }
 
     config.action_controller.permit_all_parameters = true

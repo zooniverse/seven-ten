@@ -1,3 +1,4 @@
+require 'sidekiq/web'
 Rails.application.routes.draw do
   defaults format: 'json' do
     resources :metrics
@@ -7,5 +8,6 @@ Rails.application.routes.draw do
     resources :variants
 
     root 'application#root'
+    mount Sidekiq::Web => '/sidekiq'
   end
 end
