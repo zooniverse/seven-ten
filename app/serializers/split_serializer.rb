@@ -4,4 +4,5 @@ class SplitSerializer < ApplicationSerializer
 
   link(:self){ split_path object }
   link(:variants){ variants_path filter: { split_id: object.id } }
+  link(:data_requests){ data_requests_path filter: { split_id: object.id } }
 end

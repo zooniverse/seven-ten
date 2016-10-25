@@ -32,7 +32,7 @@ RSpec.describe SplitUserVariantSerializer, type: :serializer do
     it{ is_expected.to have_key :split }
     it{ is_expected.to have_key :variant }
   end
-  
+
   describe '#links' do
     subject{ json.dig :data, 0, :links }
     its([:self]){ is_expected.to eql "/split_user_variants/#{ split_user_variant.id }" }

@@ -33,5 +33,6 @@ RSpec.describe SplitSerializer, type: :serializer do
     subject{ json.dig :data, 0, :links }
     its([:self]){ is_expected.to eql "/splits/#{ split.id }" }
     its([:variants]){ is_expected.to eql "/variants?filter%5Bsplit_id%5D=#{ split.id }" }
+    its([:data_requests]){ is_expected.to eql "/data_requests?filter%5Bsplit_id%5D=#{ split.id }" }
   end
 end
