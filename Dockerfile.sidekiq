@@ -26,7 +26,7 @@ RUN cd /rails_app && \
 
 COPY ./ /rails_app
 
-COPY docker/supervisor.sidekiq.conf /etc/supervisor/conf.d/seven_ten.conf
+COPY docker/supervisor.sidekiq.conf /etc/supervisor/conf.d/sidekiq.conf
 
 ENV RAILS_ENV $RAILS_ENV
 ENV RACK_ENV $RAILS_ENV
