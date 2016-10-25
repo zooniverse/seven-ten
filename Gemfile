@@ -19,7 +19,9 @@ gem 'aws-sdk', '~> 2.4.4'
 gem 'newrelic_rpm', '~> 3.16'
 gem 'honeybadger', '~> 2.6.0'
 
-gem 'webmock', '~> 2.1', group: :test
+group :test do
+  gem 'webmock', '~> 2.1'
+end
 
 group :test, :development do
   gem 'rspec-rails', '~> 3.5.1'
