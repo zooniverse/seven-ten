@@ -3,8 +3,14 @@ class ProjectPolicy < ApplicationPolicy
     admin_or_project_owner?
   end
 
-  # TO-DO: also check user/project role permissions
   def admin_or_project_owner?
-    admin?
+    admin? || project_owner_or_collaborator?
+  end
+
+  def project_owner_or_collaborator?
+    return false if records.empty?
+    records.compact.all? do |record|
+      privileged_project_ids.include? record.id
+    end
   end
 end

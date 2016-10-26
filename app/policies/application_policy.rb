@@ -40,6 +40,13 @@ class ApplicationPolicy
     Pundit.policy_scope!(user, records.first.class)
   end
 
+  def privileged_project_ids
+    return [] unless logged_in?
+    @privileged_project_ids ||= user.roles.select do |id, roles|
+      (roles & %w(owner collaborator)).any?
+    end.keys
+  end
+
   class Scope
     attr_reader :user, :scope
 

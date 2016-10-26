@@ -25,8 +25,17 @@ RSpec.describe SplitUserVariantPolicy, type: :policy do
     it_behaves_like 'a policy forbidding', :show, :create, :update, :destroy
   end
 
-  pending 'with a project owner'
-  pending 'with a project collaborator'
+  context 'with a project owner' do
+    let(:user){ create :user, roles: { records.id => ['owner'] } }
+    it_behaves_like 'a policy permitting', :index
+    it_behaves_like 'a policy forbidding', :show, :create, :update, :destroy
+  end
+
+  context 'with a project collaborator' do
+    let(:user){ create :user, roles: { records.id => ['collaborator'] } }
+    it_behaves_like 'a policy permitting', :index
+    it_behaves_like 'a policy forbidding', :show, :create, :update, :destroy
+  end
 
   describe SplitUserVariantPolicy::Scope do
     let!(:other_records){ create_list :split_user_variant, 2 }
