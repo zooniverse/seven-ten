@@ -27,13 +27,7 @@ class MetricPolicy < ApplicationPolicy
 
   class Scope < Scope
     def resolve
-      if user && user.admin
-        scope.all
-      elsif user
-        scope.joins(:project).where project_id: privileged_project_ids
-      else
-        scope.none
-      end
+      privileged_policy_scope
     end
   end
 end
