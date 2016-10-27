@@ -1,6 +1,8 @@
 require 'pundit'
 
 class ApplicationPolicy
+  include UserRoles
+
   attr_reader :user, :records
 
   def initialize(user, records)
@@ -40,14 +42,8 @@ class ApplicationPolicy
     Pundit.policy_scope!(user, records.first.class)
   end
 
-  def privileged_project_ids
-    return [] unless logged_in?
-    @privileged_project_ids ||= user.roles.select do |id, roles|
-      (roles & %w(owner collaborator)).any?
-    end.keys
-  end
-
   class Scope
+    include UserRoles
     attr_reader :user, :scope
 
     def initialize(user, scope)

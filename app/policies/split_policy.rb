@@ -20,4 +20,16 @@ class SplitPolicy < ApplicationPolicy
   def projects
     records.compact.collect(&:project).uniq.compact
   end
+
+  class Scope < Scope
+    def resolve
+      if user && user.admin
+        scope.all
+      elsif user
+        scope.joins(:project).where project_id: privileged_project_ids
+      else
+        scope.none
+      end
+    end
+  end
 end

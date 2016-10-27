@@ -30,4 +30,14 @@ RSpec.describe DataRequestPolicy, type: :policy do
     it_behaves_like 'a policy permitting', :index, :show, :create
     it_behaves_like 'a policy forbidding', :update, :destroy
   end
+
+  describe DataRequestPolicy::Scope do
+    let(:split){ create :split }
+    let!(:other_records){ create_list :data_request, 2 }
+    let(:user){ create :user, roles: { split.project_id => ['owner'] } }
+    let!(:records){ create_list :data_request, 2, split: split }
+    subject{ DataRequestPolicy::Scope.new(user, DataRequest).resolve }
+
+    it{ is_expected.to match_array records }
+  end
 end

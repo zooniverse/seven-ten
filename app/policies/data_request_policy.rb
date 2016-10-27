@@ -30,9 +30,14 @@ class DataRequestPolicy < ApplicationPolicy
   end
 
   class Scope < Scope
-    # TO-DO: Scope by user permissions
     def resolve
-      scope
+      if user && user.admin
+        scope.all
+      elsif user
+        scope.joins(:project).where project_id: privileged_project_ids
+      else
+        scope.none
+      end
     end
   end
 end

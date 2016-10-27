@@ -28,4 +28,14 @@ RSpec.describe SplitPolicy, type: :policy do
     let(:user){ create :user, roles: { records.project.id => ['collaborator'] } }
     it_behaves_like 'a policy permitting', :index, :show, :create, :update, :destroy
   end
+
+  describe SplitPolicy::Scope do
+    let(:project){ create :project }
+    let!(:other_records){ create_list :split, 2 }
+    let(:user){ create :user, roles: { project.id => ['owner'] } }
+    let!(:records){ create_list :split, 2, project: project }
+    subject{ SplitPolicy::Scope.new(user, Split).resolve }
+
+    it{ is_expected.to match_array records }
+  end
 end

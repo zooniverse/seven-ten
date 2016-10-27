@@ -4,7 +4,11 @@ RSpec.describe VariantsController, type: :controller do
   it_behaves_like 'a controller paginating'
   it_behaves_like 'a controller sorting', attributes: [], default: :id
   it_behaves_like 'a controller filtering', attributes: [:split_id]
-  it_behaves_like 'a controller rendering'
+
+  it_has_behavior_of 'an authenticated user' do
+    let(:current_user){ create :user, :admin }
+    it_behaves_like 'a controller rendering'
+  end
 
   it_behaves_like 'a controller creating' do
     let(:split){ create :split }

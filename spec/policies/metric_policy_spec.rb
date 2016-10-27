@@ -24,4 +24,14 @@ RSpec.describe MetricPolicy, type: :policy do
     it_behaves_like 'a policy permitting', :index, :show
     it_behaves_like 'a policy forbidding', :create, :update, :destroy
   end
+
+  describe MetricPolicy::Scope do
+    let(:suv){ create :split_user_variant }
+    let!(:other_records){ create_list :metric, 2 }
+    let(:user){ create :user, roles: { suv.project_id => ['owner'] } }
+    let!(:records){ create_list :metric, 2, split_user_variant: suv }
+    subject{ MetricPolicy::Scope.new(user, Metric).resolve }
+
+    it{ is_expected.to match_array records }
+  end
 end
