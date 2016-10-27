@@ -7,7 +7,7 @@ RSpec.describe MetricsController, type: :controller do
   it_behaves_like 'a controller sorting', attributes: [], default: :id
   it_behaves_like 'a controller filtering', attributes: [:key, :split_user_variant_id]
   it_has_behavior_of 'an authenticated user' do
-    let(:current_user){ create :user, admin: true }
+    let(:current_user){ create :user, :admin }
     it_behaves_like 'a controller rendering'
   end
 

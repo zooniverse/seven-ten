@@ -34,7 +34,7 @@ RSpec.describe ProjectsController, type: :controller do
       })
     end
 
-    let(:authorized_user){ create :user, admin: true }
+    let(:authorized_user){ create :user, :admin }
     let(:valid_params) do
       {
         data: {

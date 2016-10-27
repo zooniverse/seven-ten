@@ -16,7 +16,7 @@ RSpec.describe SplitsController, type: :controller do
 
   it_behaves_like 'a controller creating' do
     let(:project){ create :project }
-    let(:authorized_user){ create :user, admin: true }
+    let(:authorized_user){ create :user, :admin }
     let(:valid_params) do
       {
         data: {
@@ -38,7 +38,7 @@ RSpec.describe SplitsController, type: :controller do
   end
 
   it_behaves_like 'a controller updating' do
-    let(:authorized_user){ create :user, admin: true }
+    let(:authorized_user){ create :user, :admin }
     let(:split){ create :split }
     let(:valid_params) do
       {
