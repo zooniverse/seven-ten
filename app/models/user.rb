@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  attr_accessor :display_name, :admin
+  attr_accessor :display_name, :admin, :roles
   validates :login, presence: true
 
   def self.from_jwt(data = { })
@@ -10,5 +10,9 @@ class User < ApplicationRecord
       user.display_name = data['dname']
       user.admin = data['admin'] == true # explicit
     end
+  end
+
+  def roles
+    @roles || { }
   end
 end

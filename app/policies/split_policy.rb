@@ -20,4 +20,10 @@ class SplitPolicy < ApplicationPolicy
   def projects
     records.compact.collect(&:project).uniq.compact
   end
+
+  class Scope < Scope
+    def resolve
+      privileged_policy_scope
+    end
+  end
 end

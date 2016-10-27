@@ -15,4 +15,32 @@ RSpec.describe SplitUserVariant, type: :model do
       expect(without_variant).to fail_validation variant: 'must exist'
     end
   end
+
+  describe '#set_project' do
+    let(:split){ create :split }
+    subject{ build :split_user_variant, split: split }
+
+    context 'when creating' do
+      it 'should be called before validation' do
+        expect(subject).to receive :set_project
+        subject.save
+      end
+    end
+
+    context 'when updating' do
+      it 'should not be called' do
+        subject.save
+        expect(subject).to_not receive :set_project
+        subject.update_attributes user_id: 123
+      end
+    end
+
+    it 'should set the project' do
+      expect{
+        subject.set_project
+      }.to change{
+        subject.project
+      }.to split.project
+    end
+  end
 end

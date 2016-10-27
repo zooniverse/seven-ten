@@ -49,15 +49,6 @@ RSpec.describe Split, type: :model do
     it{ is_expected.to match_array [expired] }
   end
 
-  describe '.for_project' do
-    let(:project1){ create :project }
-    let(:project2){ create :project }
-    let!(:split1){ create :split, project: project1 }
-    let!(:split2){ create :split, project: project2 }
-    subject{ Split.for_project project1 }
-    it{ is_expected.to match_array [split1] }
-  end
-
   describe '#assign_user' do
     let(:split){ create :split, state: 'active' }
     let(:user){ create :user }

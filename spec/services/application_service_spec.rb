@@ -1,5 +1,5 @@
 RSpec.describe ApplicationService, type: :service do
-  let(:current_user){ create :user, admin: true }
+  let(:current_user){ create :user, :admin }
   let(:params){ { } }
 
   let(:controller_double) do

@@ -1,5 +1,5 @@
 class VariantPolicy < ApplicationPolicy
-  delegate :admin_or_project_owner?, to: :split_policy
+  delegate :admin_or_project_owner?, to: :project_policy
 
   def create?
     admin_or_project_owner?
@@ -13,11 +13,17 @@ class VariantPolicy < ApplicationPolicy
     admin_or_project_owner?
   end
 
-  def split_policy
-    SplitPolicy.new user, splits
+  def project_policy
+    ProjectPolicy.new user, projects
   end
 
-  def splits
-    records.compact.collect(&:split).uniq.compact
+  def projects
+    records.compact.collect(&:project).uniq.compact
+  end
+
+  class Scope < Scope
+    def resolve
+      privileged_policy_scope
+    end
   end
 end

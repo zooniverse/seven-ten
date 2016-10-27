@@ -1,6 +1,8 @@
 require 'pundit'
 
 class ApplicationPolicy
+  include UserRoles
+
   attr_reader :user, :records
 
   def initialize(user, records)
@@ -41,6 +43,7 @@ class ApplicationPolicy
   end
 
   class Scope
+    include UserRoles
     attr_reader :user, :scope
 
     def initialize(user, scope)
@@ -50,6 +53,16 @@ class ApplicationPolicy
 
     def resolve
       scope
+    end
+
+    def privileged_policy_scope
+      if user && user.admin
+        scope.all
+      elsif user
+        scope.joins(:project).where project_id: privileged_project_ids
+      else
+        scope.none
+      end
     end
   end
 end

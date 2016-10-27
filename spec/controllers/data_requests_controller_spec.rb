@@ -7,13 +7,13 @@ RSpec.describe DataRequestsController, type: :controller do
   it_behaves_like 'a controller sorting', attributes: [], default: :id
   it_behaves_like 'a controller filtering', attributes: [:split_id, :'projects.slug']
   it_has_behavior_of 'an authenticated user' do
-    let(:current_user){ create :user, admin: true  }
+    let(:current_user){ create :user, :admin  }
     it_behaves_like 'a controller rendering'
   end
 
   it_behaves_like 'a controller creating' do
     let(:split){ create :split }
-    let(:authorized_user){ create :user, admin: true }
+    let(:authorized_user){ create :user, :admin }
     let(:valid_params) do
       {
         data: {

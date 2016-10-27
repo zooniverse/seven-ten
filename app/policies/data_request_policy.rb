@@ -30,9 +30,8 @@ class DataRequestPolicy < ApplicationPolicy
   end
 
   class Scope < Scope
-    # TO-DO: Scope by user permissions
     def resolve
-      scope
+      privileged_policy_scope
     end
   end
 end

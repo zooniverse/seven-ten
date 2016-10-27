@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161021145820) do
+ActiveRecord::Schema.define(version: 20161027143147) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,8 @@ ActiveRecord::Schema.define(version: 20161021145820) do
     t.string   "url"
     t.datetime "created_at",                     null: false
     t.datetime "updated_at",                     null: false
+    t.integer  "project_id",                     null: false
+    t.index ["project_id"], name: "index_data_requests_on_project_id", using: :btree
     t.index ["split_id"], name: "index_data_requests_on_split_id", using: :btree
   end
 
@@ -30,7 +32,9 @@ ActiveRecord::Schema.define(version: 20161021145820) do
     t.json     "value",                 default: {}
     t.datetime "created_at",                         null: false
     t.datetime "updated_at",                         null: false
+    t.integer  "project_id",                         null: false
     t.index ["key"], name: "index_metrics_on_key", using: :btree
+    t.index ["project_id"], name: "index_metrics_on_project_id", using: :btree
     t.index ["split_user_variant_id"], name: "index_metrics_on_split_user_variant_id", using: :btree
   end
 
@@ -45,6 +49,8 @@ ActiveRecord::Schema.define(version: 20161021145820) do
     t.integer  "variant_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "project_id", null: false
+    t.index ["project_id"], name: "index_split_user_variants_on_project_id", using: :btree
     t.index ["split_id", "user_id"], name: "index_split_user_variants_on_split_id_and_user_id", unique: true, using: :btree
     t.index ["split_id"], name: "index_split_user_variants_on_split_id", using: :btree
     t.index ["user_id"], name: "index_split_user_variants_on_user_id", using: :btree
@@ -76,14 +82,20 @@ ActiveRecord::Schema.define(version: 20161021145820) do
     t.integer  "split_id",   null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "project_id", null: false
+    t.index ["project_id"], name: "index_variants_on_project_id", using: :btree
     t.index ["split_id"], name: "index_variants_on_split_id", using: :btree
   end
 
+  add_foreign_key "data_requests", "projects"
   add_foreign_key "data_requests", "splits", on_delete: :cascade
+  add_foreign_key "metrics", "projects"
   add_foreign_key "metrics", "split_user_variants", on_delete: :cascade
+  add_foreign_key "split_user_variants", "projects"
   add_foreign_key "split_user_variants", "splits", on_delete: :cascade
   add_foreign_key "split_user_variants", "users"
   add_foreign_key "split_user_variants", "variants", on_delete: :cascade
   add_foreign_key "splits", "projects"
+  add_foreign_key "variants", "projects"
   add_foreign_key "variants", "splits", on_delete: :cascade
 end

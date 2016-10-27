@@ -6,7 +6,7 @@ RSpec.describe ProjectSchema, type: :schema do
 
     with 'properties .data' do
       its(:type){ is_expected.to eql 'object' }
-      its(:required){ is_expected.to eql ['slug'] }
+      its(:required){ is_expected.to match_array %w(id slug) }
       its(:additionalProperties){ is_expected.to be false }
 
       with :properties do

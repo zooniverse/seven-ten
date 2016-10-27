@@ -1,4 +1,5 @@
 require 'authenticator'
+require 'panoptes_client'
 
 class ApplicationController < ActionController::Base
   include Pundit
@@ -14,7 +15,7 @@ class ApplicationController < ActionController::Base
 
   delegate :resource, :serializer_class, :schema_class, to: :'self.class'
 
-  attr_reader :current_user
+  attr_reader :current_user, :auth_token
   before_action :set_format, :set_user
 
   def root
@@ -76,6 +77,25 @@ class ApplicationController < ActionController::Base
   end
 
   def set_user
-    @current_user = User.from_jwt Authenticator.from_headers request.headers
+    @current_user = User.from_jwt Authenticator.from_token auth_token
+  end
+
+  def set_roles
+    return unless current_user
+    current_user.roles = Rails.cache.fetch("#{ current_user.id }_roles", expires_in: 2.hours) do
+      panoptes_client.roles current_user.id
+    end
+  end
+
+  def panoptes_client
+    @panoptes_client ||= PanoptesClient.new auth_token
+  end
+
+  def auth_token
+    return @auth_token if @auth_token
+    authorization = request.headers['Authorization']
+    @auth_token = authorization.sub(/^Bearer /, '') if authorization.present?
+  rescue
+    nil
   end
 end

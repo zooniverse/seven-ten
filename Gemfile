@@ -18,6 +18,7 @@ gem 'pundit', '~> 1.1.0'
 gem 'aws-sdk', '~> 2.4.4'
 gem 'newrelic_rpm', '~> 3.16'
 gem 'honeybadger', '~> 2.6.0'
+gem 'panoptes-client', '~> 0.2.10'
 
 group :test do
   gem 'webmock', '~> 2.1'

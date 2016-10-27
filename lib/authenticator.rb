@@ -7,8 +7,7 @@ class Authenticator
     @key = OpenSSL::PKey.read File.read key_path
   end
 
-  def self.from_headers(headers)
-    token = headers.fetch('Authorization', '').sub(/^Bearer /, '')
+  def self.from_token(token)
     decode(token)&.dig 0, 'data'
   end
 

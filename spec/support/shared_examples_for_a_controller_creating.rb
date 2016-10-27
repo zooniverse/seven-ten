@@ -11,6 +11,8 @@ RSpec.shared_examples_for 'a controller creating' do
 
   it_has_behavior_of 'an authenticated user' do
     describe '#create' do
+      let(:current_user){ authorized_user }
+
       it 'should use the service' do
         expect(controller.service).to receive :create!
         request!
@@ -32,7 +34,6 @@ RSpec.shared_examples_for 'a controller creating' do
       end
 
       context 'when authorized' do
-        let(:current_user){ authorized_user }
         let(:current_params){ valid_params }
 
         it 'should be okay' do

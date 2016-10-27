@@ -9,17 +9,17 @@ RSpec.describe Authenticator, type: :lib do
     end
   end
 
-  describe '.from_headers' do
-    let(:headers){ { 'Authorization' => 'Bearer token' } }
+  describe '.from_token' do
+    let(:token){ 'token' }
 
     it 'should parse the token' do
       expect(Authenticator).to receive(:decode).with 'token'
-      Authenticator.from_headers headers
+      Authenticator.from_token token
     end
 
     it 'should return the payload data' do
       allow(Authenticator).to receive(:decode).and_return [{ 'data' => 'stuff' }]
-      expect(Authenticator.from_headers(headers)).to eql 'stuff'
+      expect(Authenticator.from_token(token)).to eql 'stuff'
     end
   end
 
