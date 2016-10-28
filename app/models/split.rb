@@ -1,4 +1,3 @@
-# TO-DO: add sidekiq worker to expire/transition state
 class Split < ApplicationRecord
   include MetricTypes
 
@@ -25,7 +24,9 @@ class Split < ApplicationRecord
 
   before_create :set_ends_at
 
+  scope :inactive, ->{ where state: 'inactive' }
   scope :active, ->{ where state: 'active' }
+  scope :pending, ->{ inactive.where 'starts_at < ?', Time.now.utc }
   scope :expired, ->{ active.where 'ends_at < ?', Time.now.utc }
 
   def assign_user(user)

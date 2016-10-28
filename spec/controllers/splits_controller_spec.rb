@@ -46,7 +46,8 @@ RSpec.describe SplitsController, type: :controller do
         data: {
           id: split.id.to_s,
           attributes: {
-            name: 'changed'
+            name: 'changed',
+            starts_at: Time.now.as_json
           }
         }
       }

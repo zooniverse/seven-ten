@@ -12,6 +12,8 @@ RSpec.describe SplitSchema, type: :schema do
         its(:name){ is_expected.to eql type: 'string' }
         its(:key){ is_expected.to eql type: 'string' }
         its(:state){ is_expected.to eql enum: %w(inactive active complete) }
+        its(:starts_at){ is_expected.to eql type: 'string', format: 'date-time' }
+        its(:ends_at){ is_expected.to eql type: 'string', format: 'date-time' }
       end
     end
   end
