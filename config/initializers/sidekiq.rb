@@ -25,3 +25,9 @@ Dir[Rails.root.join('app/workers/**/*.rb')].sort.each do |path|
   name = path.match(/workers\/(.+)\.rb$/)[1]
   name.classify.constantize unless path =~ /workers\/concerns/
 end
+
+unless Rails.env.test?
+  require 'sidekiq-cron'
+  schedule = Rails.root.join 'config/worker_schedule.yml'
+  Sidekiq::Cron::Job.load_from_array(YAML.load_file(schedule)) if schedule.exist?
+end

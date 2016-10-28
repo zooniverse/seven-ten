@@ -41,6 +41,14 @@ RSpec.describe Split, type: :model do
     end
   end
 
+  describe '.pending' do
+    let!(:inactive){ create :split, starts_at: 1.day.from_now }
+    let!(:active){ create :split, state: 'active' }
+    let!(:pending){ create :split, state: 'inactive', starts_at: 1.day.ago }
+    subject{ Split.pending }
+    it{ is_expected.to match_array [pending] }
+  end
+
   describe '.expired' do
     let!(:inactive){ create :split, ends_at: 1.day.ago }
     let!(:active){ create :split, state: 'active' }
