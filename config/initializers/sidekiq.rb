@@ -29,5 +29,9 @@ end
 unless Rails.env.test?
   require 'sidekiq-cron'
   schedule = Rails.root.join 'config/worker_schedule.yml'
-  Sidekiq::Cron::Job.load_from_array(YAML.load_file(schedule)) if schedule.exist?
+  begin
+    Sidekiq::Cron::Job.load_from_array(YAML.load_file(schedule)) if schedule.exist?
+  rescue Redis::CannotConnectError => e
+    Rails.logger.error e
+  end
 end
