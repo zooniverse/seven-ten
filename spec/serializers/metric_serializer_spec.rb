@@ -24,6 +24,7 @@ RSpec.describe MetricSerializer, type: :serializer do
     its([:key]){ is_expected.to eql metric.key }
     its([:value]){ is_expected.to eql metric.value }
     its([:split_user_variant_id]){ is_expected.to eql metric.split_user_variant_id }
+    its([:created_at]){ is_expected.to be_within(1.second).of metric.created_at }
   end
 
   describe '#links' do
