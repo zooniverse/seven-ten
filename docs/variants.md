@@ -17,7 +17,10 @@ A split variant
 
 ### API
 
+<details>
+<summary>
 #### GET /variants
+</summary>
 
 - Scoped by project owner or collaborator roles
 - Site admins can access all variants
@@ -50,8 +53,12 @@ A split variant
   }
 }
 ```
+</details>
 
+<details>
+<summary>
 #### GET /variants/:id
+</summary>
 
 - Publicly accessible
 
@@ -77,8 +84,12 @@ A split variant
   }
 }
 ```
+</details>
 
+<details>
+<summary>
 #### POST /variants
+</summary>
 
 - Accessible by project owners, collaborators, and site admins
 
@@ -139,8 +150,12 @@ A split variant
   }
 }
 ```
+</details>
 
+<details>
+<summary>
 #### PUT /variants/:id
+</summary>
 
 - Accessible by project owners, collaborators, and site admins
 
@@ -191,7 +206,12 @@ A split variant
   }
 }
 ```
+</details>
 
+<details>
+<summary>
 #### DELETE /variants/:id
+</summary>
 
 - Accessible by project owners, collaborators, and site admins
+</details>

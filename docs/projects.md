@@ -14,7 +14,10 @@ A Panoptes project.  `Project#id` is consistent with Panoptes
 
 ### API
 
+<details>
+<summary>
 #### GET /projects
+</summary>
 
 - Publicly accessible
 - Filterable by `slug`
@@ -42,8 +45,12 @@ A Panoptes project.  `Project#id` is consistent with Panoptes
   }
 }
 ```
+</details>
 
+<details>
+<summary>
 #### GET /projects/:id
+</summary>
 
 - Publicly accessible
 
@@ -65,8 +72,12 @@ A Panoptes project.  `Project#id` is consistent with Panoptes
   }
 }
 ```
+</details>
 
+<details>
+<summary>
 #### POST /projects
+</summary>
 
 - Accessible by project owners, collaborators, and site admins
 
@@ -107,11 +118,20 @@ A Panoptes project.  `Project#id` is consistent with Panoptes
   }
 }
 ```
+</details>
 
+<details>
+<summary>
 #### PUT /projects/:id
+</summary>
 
 - Not permitted
+</details>
 
+<details>
+<summary>
 #### DELETE /projects/:id
+</summary>
 
 - Not permitted
+</details>

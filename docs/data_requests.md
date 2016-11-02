@@ -16,7 +16,10 @@ A request for a Split's Metrics
 
 ### API
 
+<details>
+<summary>
 #### GET /data_requests
+</summary>
 
 - Scoped by project owner or collaborator roles
 - Site admins can access all data requests
@@ -77,8 +80,12 @@ A request for a Split's Metrics
   }
 }
 ```
+</details>
 
+<details>
+<summary>
 #### GET /data_requests/:id
+</summary>
 
 - Scoped by project owner or collaborator roles
 - Site admins can access all data requests
@@ -133,8 +140,12 @@ A request for a Split's Metrics
   }
 }
 ```
+</details>
 
+<details>
+<summary>
 #### POST /data_requests
+</summary>
 
 - Accessible by project owners, collaborators, and site admins
 
@@ -182,11 +193,20 @@ A request for a Split's Metrics
   }
 }
 ```
+</details>
 
+<details>
+<summary>
 #### PUT /data_requests/:id
+</summary>
 
 - Not permitted
+</details>
 
+<details>
+<summary>
 #### DELETE /data_requests/:id
+</summary>
 
 - Not permitted
+</details>

@@ -11,7 +11,10 @@ The assignment of Variant to a User for a Split
 
 ### API
 
+<details>
+<summary>
 #### GET /split_user_variants
+</summary>
 
 - Scoped by current user
 - Will assign the current user to a variant if:
@@ -89,8 +92,12 @@ The assignment of Variant to a User for a Split
   }
 }
 ```
+</details>
 
+<details>
+<summary>
 #### GET /split_user_variants/:id
+</summary>
 
 - Publicly accessible
 - Includes `split` and `variant`
@@ -158,15 +165,28 @@ The assignment of Variant to a User for a Split
   }
 }
 ```
+</details>
 
+<details>
+<summary>
 #### POST /split_user_variants
+</summary>
 
 - Not permitted
+</details>
 
+<details>
+<summary>
 #### PUT /split_user_variants/:id
+</summary>
 
 - Not permitted
+</details>
 
+<details>
+<summary>
 #### DELETE /split_user_variants/:id
+</summary>
 
 - Not permitted
+</details>

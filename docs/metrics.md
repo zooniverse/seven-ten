@@ -15,7 +15,10 @@ The record of a user event
 
 ### API
 
+<details>
+<summary>
 #### GET /metrics
+</summary>
 
 - Scoped by project owner or collaborator roles
 - Site admins can access all metrics
@@ -48,8 +51,12 @@ The record of a user event
   }
 }
 ```
+</details>
 
+<details>
+<summary>
 #### GET /metrics/:id
+</summary>
 
 - Scoped by project owner or collaborator roles
 - Site admins can access all metrics
@@ -76,8 +83,12 @@ The record of a user event
   }
 }
 ```
+</details>
 
+<details>
+<summary>
 #### POST /metrics
+</summary>
 
 - Accessible by project owners, collaborators, and site admins
 
@@ -138,11 +149,20 @@ The record of a user event
   }
 }
 ```
+</details>
 
+<details>
+<summary>
 #### PUT /metrics/:id
+</summary>
 
 - Not permitted
+</details>
 
+<details>
+<summary>
 #### DELETE /metrics/:id
+</summary>
 
 - Not permitted
+</details>
