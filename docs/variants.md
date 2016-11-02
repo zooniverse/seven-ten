@@ -14,6 +14,14 @@ A split variant
 | `name`    | String | A descriptive name |
 | `value`   | JSON   | The content |
 
+Expected `value`s for current split keys:
+
+- `landing.text`
+  - `value: { description: 'Some text' }`
+- `workflow.advance`
+  - `value: { accept: 'Some text', decline: 'Some text' }`
+- `mini-course.visible`
+  - `value: { button: true, auto: true }` (enabled/disabled)
 
 ### API
 

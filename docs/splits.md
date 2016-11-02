@@ -18,6 +18,12 @@ The A/B split test
 | `starts_at`  | Date time | An optional time for the split to activate |
 | `ends_at`    | Date time | An optional time for the split to complete |
 
+Supported split keys are currently
+
+- `'landing.text'`
+- `'workflow.advance'`
+- `'mini-course.visible'`
+
 ### API
 
 <details>

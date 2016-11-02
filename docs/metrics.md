@@ -13,6 +13,11 @@ The record of a user event
 | `key`     | String | An identifier of the user event |
 | `value`   | JSON   | Extra information for the event |
 
+Supported metric keys are currently
+
+- `'classification_created'`
+- `'classifier_visited'`
+
 ### API
 
 <details>
