@@ -6,6 +6,11 @@ postgres:
   ports:
     - "5432:5432"
 
+redis:
+  image: redis
+  ports:
+    - "6379:6379"
+
 seven_ten:
   dockerfile: Dockerfile
   build: ./
@@ -14,6 +19,17 @@ seven_ten:
     - "RACK_ENV=docker_development"
   links:
     - postgres:pg
+    - redis:redis
+
+sidekiq:
+  dockerfile: Dockerfile.sidekiq
+  build: ./
+  environment:
+    - "RAILS_ENV=docker_development"
+    - "RACK_ENV=docker_development"
+  links:
+    - postgres:pg
+    - redis:redis
 
 nginx:
   dockerfile: Dockerfile.nginx

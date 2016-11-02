@@ -1,0 +1,4 @@
+---
+- name: split_state_transitions
+  class: SplitTransitionWorker
+  cron: "*/3 * * * *"

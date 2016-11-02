@@ -1,0 +1,19 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: 16
+  host: <%= ENV["SEVENTEN_POSTGRES_1_PORT_5432_TCP_ADDR"] %>
+  username: seven_ten
+  password: seven_ten
+
+development:
+  <<: *default
+  database: seven_ten
+
+test:
+  <<: *default
+  database: seven_ten_test
+
+docker_development:
+  <<: *default
+  database: seven_ten
