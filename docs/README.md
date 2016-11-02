@@ -1,5 +1,7 @@
 ## Structure
 
+Authorization is provided by a [JWT](https://tools.ietf.org/html/rfc7523) token from [Panoptes](https://github.com/zooniverse/Panoptes) sent in the request's `Authorization` header.
+
 [Policies](https://github.com/zooniverse/Seven-Ten/blob/master/app/policies)
   - what actions are allowed for a user
 
@@ -11,7 +13,7 @@
   - what associations can be included
   - what parameters can be used for filtering or sorting
 
-#### Resources
+## Resources
 
 [Project](https://github.com/zooniverse/Seven-Ten/blob/master/docs/projects.md)
   - A local representation of a [Panoptes](https://github.com/zooniverse/Panoptes) project
