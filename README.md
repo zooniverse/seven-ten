@@ -42,3 +42,7 @@ docker-machine ls
 ## [Documentation](https://github.com/zooniverse/Seven-Ten/blob/master/docs/)
 
 Documentation can be found in [/docs](https://github.com/zooniverse/Seven-Ten/blob/master/docs/).
+
+### Client
+
+The JavaScript client is located at [zooniverse/Seven-Ten-Client](https://github.com/zooniverse/Seven-Ten-Client).
