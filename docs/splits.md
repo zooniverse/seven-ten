@@ -21,9 +21,7 @@ The A/B split test
 ### API
 
 <details>
-<summary>
-#### GET /splits
-</summary>
+<summary><strong>GET /splits</strong></summary>
 
 - Scoped by project owner or collaborator roles
 - Site admins can access all splits
@@ -63,9 +61,7 @@ The A/B split test
 </details>
 
 <details>
-<summary>
-#### GET /splits/:id
-</summary>
+<summary><strong>GET /splits/:id</strong></summary>
 
 - Publicly accessible
 
@@ -98,9 +94,7 @@ The A/B split test
 </details>
 
 <details>
-<summary>
-#### POST /splits
-</summary>
+<summary><strong>POST /splits</strong></summary>
 
 - Accessible by project owners, collaborators, and site admins
 
@@ -172,9 +166,7 @@ The A/B split test
 </details>
 
 <details>
-<summary>
-#### PUT /splits/:id
-</summary>
+<summary><strong>PUT /splits/:id</strong></summary>
 
 - Accessible by project owners, collaborators, and site admins
 
@@ -236,9 +228,7 @@ The A/B split test
 </details>
 
 <details>
-<summary>
-#### DELETE /splits/:id
-</summary>
+<summary><strong>DELETE /splits/:id</strong></summary>
 
 - Accessible by project owners, collaborators, and site admins
 </details>
