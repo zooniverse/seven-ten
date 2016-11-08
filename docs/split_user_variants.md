@@ -73,6 +73,7 @@ The assignment of Variant to a User for a Split
       "value": {
         "description": "Original project description"
       },
+      "weight": 50,
       "split_id": "1"
     },
     "links": {
@@ -149,6 +150,7 @@ The assignment of Variant to a User for a Split
       "value": {
         "description": "Original project description"
       },
+      "weight": 50,
       "split_id": "1"
     },
     "links": {

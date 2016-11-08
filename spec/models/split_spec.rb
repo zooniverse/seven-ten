@@ -57,10 +57,47 @@ RSpec.describe Split, type: :model do
     it{ is_expected.to match_array [expired] }
   end
 
+  describe '#variants.weighted_sample' do
+    let(:split){ create :split }
+
+    context 'with unweighted variants' do
+      let!(:variants){ create_list :variant, 2, split: split }
+      it 'should sample randomly' do
+        expect(split.variants).to receive :sample
+        split.variants.weighted_sample
+      end
+    end
+
+    context 'with weighted variants' do
+      let!(:lower){ create :variant, split: split, weight: 1 }
+      let!(:higher){ create :variant, split: split, weight: 99 }
+
+      it 'should not sample randomly' do
+        expect(split.variants).to_not receive :sample
+        split.variants.weighted_sample
+      end
+
+      it 'should weight the results' do
+        counts = Hash.new 0
+        100.times.collect{ counts[split.variants.weighted_sample.id] += 1 }
+        expect(counts[higher.id]).to be > counts[lower.id]
+      end
+    end
+  end
+
   describe '#assign_user' do
     let(:split){ create :split, state: 'active' }
     let(:user){ create :user }
     subject{ split.assign_user user }
+
+    context 'when sampling' do
+      let!(:variant){ create :variant, split: split }
+
+      it 'should use weighted sampling' do
+        expect(split.variants).to receive(:weighted_sample).and_call_original
+        split.assign_user user
+      end
+    end
 
     context 'when the user is already assigned' do
       let!(:assigned){ create :split_user_variant, user: user, split: split }
@@ -141,6 +178,4 @@ RSpec.describe Split, type: :model do
       end
     end
   end
-
-  pending 'transitioning state'
 end

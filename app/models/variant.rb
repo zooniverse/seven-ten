@@ -12,4 +12,8 @@ class Variant < ApplicationRecord
   def set_project
     self.project = split&.project
   end
+
+  def unweighted?
+    weight.nil?
+  end
 end
