@@ -1,7 +1,21 @@
 class Split < ApplicationRecord
   include MetricTypes
 
-  has_many :variants
+  has_many :variants do
+    def weighted_sample
+      return sample if any?(&:unweighted?)
+      random = (100 * rand).round
+      find do |variant|
+        if random <= variant.weight
+          true
+        else
+          random -= variant.weight
+          false
+        end
+      end
+    end
+  end
+
   has_many :split_user_variants
   has_many :users, through: :split_user_variants
   has_many :metrics, through: :split_user_variants
@@ -32,7 +46,7 @@ class Split < ApplicationRecord
   def assign_user(user)
     with_retry(attempts: 5, error: ActiveRecord::RecordNotUnique) do
       split_user_variants.where(user: user).first_or_create do |suv|
-        suv.variant = variants.sample # or implement a weighted sampling
+        suv.variant = variants.weighted_sample
         suv.save!
       end
     end

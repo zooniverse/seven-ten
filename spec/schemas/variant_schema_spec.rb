@@ -10,6 +10,7 @@ RSpec.describe VariantSchema, type: :schema do
       with :properties do
         its(:split_id){ is_expected.to eql id_schema }
         its(:name){ is_expected.to eql type: 'string' }
+        its(:weight){ is_expected.to eql type: 'integer', minimum: 1, maximum: 100 }
 
         with :value do
           its(:type){ is_expected.to eql 'object' }

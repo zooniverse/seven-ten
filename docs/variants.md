@@ -9,10 +9,11 @@ A split variant
 
 #### Attributes
 
-| Attribute | Type   | Description |
-| :-------- | :----- | :---------- |
-| `name`    | String | A descriptive name |
-| `value`   | JSON   | The content |
+| Attribute | Type    | Description |
+| :-------- | :-----  | :---------- |
+| `name`    | String  | A descriptive name |
+| `value`   | JSON    | The content |
+| `weight`  | Integer | The likelihood of selecting (1 - 100) |
 
 Expected `value`s for current split keys:
 
@@ -42,6 +43,7 @@ Expected `value`s for current split keys:
       "value": {
         "description": "Original project description"
       },
+      "weight": 50,
       "split_id": 1
     },
     "links": {
@@ -76,6 +78,7 @@ Expected `value`s for current split keys:
       "value": {
         "description": "Original project description"
       },
+      "weight": 50,
       "split_id": 1
     },
     "links": {
@@ -118,6 +121,11 @@ Expected `value`s for current split keys:
           "properties": {},
           "type": "object",
           "additionalProperties": true
+        },
+        "weight": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 100
         }
       },
       "type": "object",
@@ -182,6 +190,11 @@ Expected `value`s for current split keys:
           "properties": {},
           "type": "object",
           "additionalProperties": true
+        },
+        "weight": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 100
         }
       },
       "type": "object",

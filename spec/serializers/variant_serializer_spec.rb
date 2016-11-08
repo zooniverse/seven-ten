@@ -1,5 +1,5 @@
 RSpec.describe VariantSerializer, type: :serializer do
-  let!(:variant){ create :variant }
+  let!(:variant){ create :variant, weight: 40 }
   let(:json) do
     ActiveModelSerializers::SerializableResource.new(Variant.all).as_json
   end
@@ -23,6 +23,7 @@ RSpec.describe VariantSerializer, type: :serializer do
     subject{ json.dig :data, 0, :attributes }
     its([:name]){ is_expected.to eql variant.name }
     its([:value]){ is_expected.to eql variant.value }
+    its([:weight]){ is_expected.to eql variant.weight }
     its([:split_id]){ is_expected.to eql variant.split_id }
   end
 

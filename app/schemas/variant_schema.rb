@@ -11,6 +11,7 @@ class VariantSchema < ApplicationSchema
     root do |root_object|
       id :split_id, **required
       string :name, **required
+      integer :weight, minimum: 1, maximum: 100
 
       object :value, **required do |value|
         value.additional_properties true
