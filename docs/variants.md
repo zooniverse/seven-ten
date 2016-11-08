@@ -15,6 +15,10 @@ A split variant
 | `value`   | JSON    | The content |
 | `weight`  | Integer | The likelihood of selecting (1 - 100) |
 
+Weighted sampling is optional.
+If variants have `weight`s, they should sum to 100.
+If variants do not have `weight`s, a random selection will be made.
+
 Expected `value`s for current split keys:
 
 - `landing.text`
