@@ -6,4 +6,4 @@ fi
 
 bundle install --without test development
 rake db:migrate
-puma
+puma -C config/puma.rb
