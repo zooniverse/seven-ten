@@ -167,6 +167,11 @@ RSpec.describe Split, type: :model do
         it{ is_expected.to match_array landing_text_metrics }
       end
 
+      context 'for workflow assignment message' do
+        subject{ workflow_assignment.metric_types }
+        it{ is_expected.to match_array workflow_assignment_metrics }
+      end
+
       context 'for workflow advance message' do
         subject{ workflow_advance.metric_types }
         it{ is_expected.to match_array workflow_advance_metrics }

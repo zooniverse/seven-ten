@@ -23,6 +23,8 @@ Expected `value`s for current split keys:
 
 - `landing.text`
   - `value: { description: 'Some text' }`
+- `workflow.assignment`
+  - `value: { description: 'Some text' }`
 - `workflow.advance`
   - `value: { accept: 'Some text', decline: 'Some text' }`
 - `mini-course.visible`

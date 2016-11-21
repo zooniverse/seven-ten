@@ -6,6 +6,10 @@ module MetricTypes
       'classifier_visited',
       'classification_created'
     ],
+    'workflow.assignment' => [
+      'classifier_visited',
+      'classification_created'
+    ],
     'workflow.advance' => [
       'classification_created'
     ],

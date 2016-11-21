@@ -21,6 +21,7 @@ The A/B split test
 Supported split keys are currently
 
 - `'landing.text'`
+- `'workflow.assignment'`
 - `'workflow.advance'`
 - `'mini-course.visible'`
 
