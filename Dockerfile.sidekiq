@@ -11,7 +11,7 @@ WORKDIR /rails_app
 
 RUN apt-get update && \
   apt-get upgrade -y && \
-  apt-get install -y supervisor libpq-dev && \
+  apt-get install -y supervisor libpq-dev python-dev && \
   apt-get clean
 
 RUN wget -O - https://bootstrap.pypa.io/get-pip.py | python && \
