@@ -1,4 +1,8 @@
 RSpec.describe VariantsController, type: :controller do
+  before(:each) do
+    allow(controller).to receive :set_roles
+  end
+
   it_behaves_like 'a controller authenticating'
   it_behaves_like 'a controller authorizing'
   it_behaves_like 'a controller paginating'

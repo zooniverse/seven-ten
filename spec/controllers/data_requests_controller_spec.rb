@@ -1,4 +1,8 @@
 RSpec.describe DataRequestsController, type: :controller do
+  before(:each) do
+    allow(controller).to receive :set_roles
+  end
+
   it_behaves_like 'a controller authenticating'
   it_has_behavior_of 'an authenticated user' do
     it_behaves_like 'a controller authorizing'
