@@ -7,7 +7,7 @@ if env != 'development' && env != 'test'
 end
 
 if env == 'staging'
-  threads 2, 5
+  threads 2, 4
 else
   threads 2, 8
 end
