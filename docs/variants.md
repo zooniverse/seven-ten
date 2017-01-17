@@ -29,6 +29,8 @@ Expected `value`s for current split keys:
   - `value: { accept: 'Some text', decline: 'Some text' }`
 - `mini-course.visible`
   - `value: { button: true, auto: true }` (enabled/disabled)
+- `subject.first-to-classify`
+  - `value: { message: 'Some text' }`
 
 ### API
 

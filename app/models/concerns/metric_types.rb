@@ -15,7 +15,10 @@ module MetricTypes
     ],
     'mini-course.visible' => [
       'classification_created'
-    ]
+    ],
+    'subject.first-to-classify' => [
+      'classification_created'
+     ]
   }
 
   included do
