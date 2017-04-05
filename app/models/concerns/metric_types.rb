@@ -20,6 +20,7 @@ module MetricTypes
       'classification_created'
      ],
     'classifier.first-to-classify.visible' => [
+      'classifier_visited',
       'classification_created'
      ]
   }
