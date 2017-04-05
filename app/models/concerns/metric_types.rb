@@ -18,6 +18,9 @@ module MetricTypes
     ],
     'subject.first-to-classify' => [
       'classification_created'
+     ],
+    'classifier.first-to-classify.visible' => [
+      'classification_created'
      ]
   }
 

@@ -25,6 +25,7 @@ Supported split keys are currently
 - `'workflow.advance'`
 - `'mini-course.visible'`
 - `'subject.first-to-classify'`
+- `'classifier.first-to-classify.visible'`
 
 ### API
 

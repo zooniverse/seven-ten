@@ -31,7 +31,8 @@ Expected `value`s for current split keys:
   - `value: { button: true, auto: true }` (enabled/disabled)
 - `subject.first-to-classify`
   - `value: { message: 'Some text' }`
-
+- `classifier.first-to-classify.visible`
+  - `value: { div: true }` (enabled/disabled)
 ### API
 
 <details>
