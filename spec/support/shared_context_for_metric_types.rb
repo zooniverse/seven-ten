@@ -13,5 +13,5 @@ RSpec.shared_context 'a split with metric types' do
   let(:workflow_advance_metrics){ %w(classification_created) }
   let(:mini_course_visible_metrics){ %w(classification_created) }
   let(:subject_first_to_classify_metrics){ %w(classification_created) }
-  let(:subject_first_to_classify_visible){ %w(classification_created classifier_visited) }
+  let(:subject_first_to_classify_visible_metrics){ %w(classification_created classifier_visited) }
 end
