@@ -182,12 +182,12 @@ RSpec.describe Split, type: :model do
         it{ is_expected.to match_array mini_course_visible_metrics }
       end
 
-      context 'for first to classify subject message' do
+      context 'for first–to-classify message' do
         subject{ subject_first_to_classify.metric_types }
         it{ is_expected.to match_array subject_first_to_classify_metrics }
       end
 
-      context 'for first to classify classifier visiblity' do
+      context 'for first-to-classify message visiblity' do
         subject{ subject_first_to_classify_visible.metric_types }
         it{ is_expected.to match_array subject_first_to_classify_visible_metrics }
       end
