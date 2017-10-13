@@ -22,6 +22,9 @@ module MetricTypes
     'subject.first-to-classify.visible' => [
       'classifier_visited',
       'classification_created'
+     ],
+    'classifier.collaborative' => [
+      'classification_created'
      ]
   }
 
