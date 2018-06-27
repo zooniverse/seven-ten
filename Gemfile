@@ -4,7 +4,7 @@ gem 'rails', '5.0.0.1'
 gem 'puma', '~> 3.0'
 
 gem 'rack-cors', '~> 0.4.0'
-gem 'pg', '~> 0.18.4'
+gem 'pg', '~> 1.0.0'
 gem 'redis', '~> 3.3.1'
 gem 'sidekiq', '~> 4.2.2'
 gem 'sidekiq-cron', '~> 0.4.4'
