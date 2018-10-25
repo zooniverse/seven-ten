@@ -15,6 +15,9 @@ Authorization is provided by a [JWT](https://tools.ietf.org/html/rfc7523) token 
 
 ## Resources
 
+[Examples](https://github.com/zooniverse/Seven-Ten/blob/master/docs/examples.md)
+  - A few examples of creating splits and variants on the Rails console.
+
 [Project](https://github.com/zooniverse/Seven-Ten/blob/master/docs/projects.md)
   - A local representation of a [Panoptes](https://github.com/zooniverse/Panoptes) project
 
