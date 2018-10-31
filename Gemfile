@@ -32,7 +32,7 @@ group :test, :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'spring-commands-rspec', '~> 1.0.4'
   gem 'factory_girl_rails', '~> 4.7.0'
-  gem 'guard', '~> 2.14.0'
+  gem 'guard', '~> 2.14.2'
   gem 'guard-rspec', '~> 4.7.3'
   gem 'pry', '~> 0.10.3'
 end
