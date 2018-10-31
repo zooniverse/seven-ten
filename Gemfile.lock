@@ -72,7 +72,7 @@ GEM
       faraday_middleware (~> 0.10)
     faraday_middleware (0.10.0)
       faraday (>= 0.7.4, < 0.10)
-    ffi (1.9.14)
+    ffi (1.9.25)
     formatador (0.2.5)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
