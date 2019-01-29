@@ -46,3 +46,5 @@ Documentation can be found in [/docs](https://github.com/zooniverse/Seven-Ten/bl
 ### Client
 
 The JavaScript client is located at [zooniverse/Seven-Ten-Client](https://github.com/zooniverse/Seven-Ten-Client).
+
+[![pullreminders](https://pullreminders.com/badge.svg)](https://pullreminders.com?ref=badge)
