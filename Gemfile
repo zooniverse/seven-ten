@@ -5,15 +5,15 @@ gem 'puma', '~> 3.0'
 
 gem 'rack-cors', '~> 1.0.2'
 gem 'pg', '~> 1.1.4'
-gem 'redis', '~> 3.3.1'
-gem 'sidekiq', '~> 4.2.10'
+gem 'redis', '~> 4.1.0'
+gem 'sidekiq', '~> 5.2.5'
 gem 'sidekiq-cron', '~> 0.4.4'
 gem 'active_model_serializers', '~> 0.10.8'
 gem 'jwt', '1.5.6'
 gem 'faraday', '~> 0.9.2'
 gem 'faraday_middleware', '~> 0.13.1'
 gem 'kaminari', '~> 0.17.0'
-gem 'json-schema', '~> 2.6.2'
+gem 'json-schema', '~> 2.8.1'
 gem 'json-schema_builder', '~> 0.8.2'
 gem 'pundit', '~> 1.1.0'
 gem 'aws-sdk', '~> 2.4.4'
@@ -26,7 +26,7 @@ group :test do
 end
 
 group :test, :development do
-  gem 'rspec-rails', '~> 3.5.1'
+  gem 'rspec-rails', '~> 3.8.2'
   gem 'rspec-its', '~> 1.2.0'
   gem 'spring', '~> 2.0.2'
   gem 'spring-watcher-listen', '~> 2.0.0'
