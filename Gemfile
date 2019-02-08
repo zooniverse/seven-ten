@@ -18,7 +18,7 @@ gem 'json-schema_builder', '~> 0.8.2'
 gem 'pundit', '~> 1.1.0'
 gem 'aws-sdk', '~> 2.4.4'
 gem 'newrelic_rpm', '~> 3.16'
-gem 'honeybadger', '~> 2.6.0'
+gem 'honeybadger', '~> 4.2.1'
 gem 'panoptes-client', '~> 0.2.10'
 
 group :test do
