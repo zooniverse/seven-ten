@@ -13,12 +13,12 @@ pipeline {
       steps {
         script {
           def dockerRepoName = 'zooniverse/seven-ten'
-          def dockerImageName = "${dockerRepoName}:${BRANCH_NAME}"
+          def dockerImageName = "${dockerRepoName}:${GIT_COMMIT}"
           def newImage = docker.build(dockerImageName)
+          newImage.push()
 
           if (BRANCH_NAME == 'master') {
             stage('Update latest tag') {
-              newImage.push()
               newImage.push('latest')
             }
           }
@@ -30,7 +30,7 @@ pipeline {
       when { tag 'production-release' }
       agent any
       steps {
-        sh "sed 's/__IMAGE_TAG__/${GIT_COMMIT}/g' kubernetes/deployment-production.tmpl | kubectl apply --record -f -"
+        sh "sed 's/__IMAGE_TAG__/${GIT_COMMIT}/g' kubernetes/deployment-production.tmpl | kubectl --context azure apply --record -f -"
       }
     }
 
@@ -38,7 +38,7 @@ pipeline {
       when { branch 'master' }
       agent any
       steps {
-        sh "sed 's/__IMAGE_TAG__/${GIT_COMMIT}/g' kubernetes/deployment-staging.tmpl | kubectl apply --record -f -"
+        sh "sed 's/__IMAGE_TAG__/${GIT_COMMIT}/g' kubernetes/deployment-staging.tmpl | kubectl --context azure apply --record -f -"
       }
     }
   }
