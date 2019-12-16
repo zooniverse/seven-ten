@@ -1,0 +1,64 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: seven-ten-staging-app
+  labels:
+    app: seven-ten-staging-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: seven-ten-staging-app
+  template:
+    metadata:
+      labels:
+        app: seven-ten-staging-app
+    spec:
+      containers:
+        - name: seven-ten-staging-app
+          image: zooniverse/seven-ten:__IMAGE_TAG__
+          env:
+            - name: RAILS_ENV
+              value: staging
+          volumeMounts:
+            - name: seven-ten-staging
+              mountPath: "/rails_app/config/database.yml"
+              subPath: "database"
+              readOnly: true
+            - name: seven-ten-staging
+              mountPath: "/rails_app/config/honeybadger.yml"
+              subPath: "honeybadger"
+              readOnly: true
+            - name: seven-ten-staging
+              mountPath: "/rails_app/config/newrelic.yml"
+              subPath: "newrelic"
+              readOnly: true
+            - name: seven-ten-staging
+              mountPath: "/rails_app/config/redis.yml"
+              subPath: "redis"
+              readOnly: true
+            - name: seven-ten-staging
+              mountPath: "/rails_app/config/secrets.yml"
+              subPath: "secrets"
+              readOnly: true
+            - name: seven-ten-staging
+              mountPath: "/rails_app/config/sidekiq_admin.yml"
+              subPath: "sidekiq_admin"
+              readOnly: true
+      volumes:
+        - name: seven-ten-staging
+          secret:
+            secretName: seven-ten-staging
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: seven-ten-staging-app
+spec:
+  selector:
+    app: seven-ten-staging-app
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+  type: NodePort
