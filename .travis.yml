@@ -3,11 +3,13 @@ sudo: false
 cache:
   - bundler
 rvm:
-- 2.3.1
+- 2.6.4
 before_script:
   - rename 's/\.yml.travis$/\.yml/' config/*.yml.travis
   - psql -U postgres -c 'create database travis_ci_test;'
   - RACK_ENV=test bundle exec rake db:schema:load
+  - gem uninstall -v '>= 2' -i $(rvm gemdir)@global -ax bundler || true
+  - gem install bundler -v '< 2'
 services:
   - postgresql
 addons:
