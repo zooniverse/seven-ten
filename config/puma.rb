@@ -13,4 +13,4 @@ else
 end
 
 worker_timeout 10
-bind 'tcp://0.0.0.0:81'
+bind 'tcp://0.0.0.0:80'
