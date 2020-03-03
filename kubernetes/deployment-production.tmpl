@@ -50,6 +50,58 @@ spec:
           secret:
             secretName: seven-ten-production
 ---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: seven-ten-production-sidekiq
+  labels:
+    app: seven-ten-production-sidekiq
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: seven-ten-production-sidekiq
+  template:
+    metadata:
+      labels:
+        app: seven-ten-production-sidekiq
+    spec:
+      containers:
+        - name: seven-ten-production-sidekiq
+          image: zooniverse/seven-ten:__IMAGE_TAG__
+          env:
+            - name: RAILS_ENV
+              value: production
+          volumeMounts:
+            - name: seven-ten-production
+              mountPath: "/rails_app/config/database.yml"
+              subPath: "database"
+              readOnly: true
+            - name: seven-ten-production
+              mountPath: "/rails_app/config/honeybadger.yml"
+              subPath: "honeybadger"
+              readOnly: true
+            - name: seven-ten-production
+              mountPath: "/rails_app/config/newrelic.yml"
+              subPath: "newrelic"
+              readOnly: true
+            - name: seven-ten-production
+              mountPath: "/rails_app/config/redis.yml"
+              subPath: "redis"
+              readOnly: true
+            - name: seven-ten-production
+              mountPath: "/rails_app/config/secrets.yml"
+              subPath: "secrets"
+              readOnly: true
+            - name: seven-ten-production
+              mountPath: "/rails_app/config/sidekiq_admin.yml"
+              subPath: "sidekiq_admin"
+              readOnly: true
+      volumes:
+        - name: seven-ten-production
+          secret:
+            secretName: seven-ten-production
+---
 apiVersion: v1
 kind: Service
 metadata:
