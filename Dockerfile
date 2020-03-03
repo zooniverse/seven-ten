@@ -24,7 +24,7 @@ COPY ./ /rails_app
 ENV RAILS_ENV $RAILS_ENV
 ENV RACK_ENV $RAILS_ENV
 
-RUN (cd /app && git log --format="%H" -n 1 > commit_id.txt)
+RUN (cd /rails_app && git log --format="%H" -n 1 > commit_id.txt)
 
 EXPOSE 80
 
