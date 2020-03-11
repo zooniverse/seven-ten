@@ -6,11 +6,13 @@ ENV LANG en_US.UTF-8
 ENV LC_ALL en_US.UTF-8
 
 ARG RAILS_ENV
+ARG REVISION=''
+ENV REVISION=$REVISION
 
 WORKDIR /rails_app
 
 RUN apt-get update && \
-  apt-get install --no-install-recommends -y git libpq-dev && \
+  apt-get install --no-install-recommends -y libpq-dev && \
   apt-get clean && rm -rf /var/lib/apt/lists/*
 
 COPY ./Gemfile /rails_app/
@@ -23,8 +25,6 @@ COPY ./ /rails_app
 
 ENV RAILS_ENV $RAILS_ENV
 ENV RACK_ENV $RAILS_ENV
-
-RUN (cd /rails_app && git log --format="%H" -n 1 > commit_id.txt)
 
 EXPOSE 80
 
