@@ -69,6 +69,7 @@ spec:
       containers:
         - name: seven-ten-staging-sidekiq
           image: zooniverse/seven-ten:__IMAGE_TAG__
+          args: ["/rails_app/docker/start_sidekiq.sh"]
           env:
             - name: RAILS_ENV
               value: staging
