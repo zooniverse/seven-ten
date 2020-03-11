@@ -20,7 +20,7 @@ class ApplicationController < ActionController::Base
 
   def root
     render json: {
-      revision: Rails.application.revision
+      revision: ENV['REVISION']
     }
   end
 

@@ -1,7 +1,7 @@
-.git
 .bundle
 .rspec
 .gitignore
 .travis.yml
 log/*
 spec
+.git
