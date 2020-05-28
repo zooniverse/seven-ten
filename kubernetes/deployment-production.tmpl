@@ -129,3 +129,16 @@ spec:
       port: 80
       targetPort: 80
   type: NodePort
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: seven-ten-production-app-lb
+spec:
+  selector:
+    app: seven-ten-production-app
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+  type: LoadBalancer
