@@ -1,9 +1,4 @@
-FROM zooniverse/ruby:2.3.1
-
-ENV DEBIAN_FRONTEND noninteractive
-RUN locale-gen en_US.UTF-8
-ENV LANG en_US.UTF-8
-ENV LC_ALL en_US.UTF-8
+FROM ruby:2.6-stretch
 
 ARG RAILS_ENV
 ARG REVISION=''
