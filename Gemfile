@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '5.2.2'
+gem 'rails', '~> 5.2.2'
 gem 'puma', '~> 4.3'
 
 gem 'rack-cors', '~> 1.0.2'

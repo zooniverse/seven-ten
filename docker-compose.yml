@@ -1,7 +1,7 @@
 version: '2'
 services:
   postgres:
-    image: postgres
+    image: postgres:11
     environment:
       - "POSTGRES_USER=seven_ten"
       - "POSTGRES_PASSWORD=seven_ten"
