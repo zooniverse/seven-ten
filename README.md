@@ -17,28 +17,13 @@ cd Seven-Ten
 for f in config/*.yml.docker; do cp "$f" "${f%.docker}"; done
 ```
 
-On Linux
+With Docker
 
 ``` bash
+docker-compose build
 docker-compose up
-```
-
-On OS X
-
-``` bash
-# setup docker
-brew install docker-machine
-docker-machine create --driver virtualbox seven-ten
-eval $(docker-machine env seven-ten)
-
-# Create and start the containers
-docker-compose up
-
-# Show the host
-docker-machine ls
-# URL
-# tcp://192.168.99.100:2376
-# Rails is running on http://192.168.99.100:3000
+# alternatively get a bash console in the docker container
+docker-compose run --service-ports --rm app bash
 ```
 
 ## [Documentation](https://github.com/zooniverse/Seven-Ten/blob/master/docs/)
